@@ -206,6 +206,7 @@ public class MainActivity extends Activity {
         logoMoveAnimation.setFillAfter(true);
         logoMoveAnimation.setFillEnabled(true);
         imageLogo.clearAnimation();
+        
         imageLogo.startAnimation(logoMoveAnimation);
     }
 
