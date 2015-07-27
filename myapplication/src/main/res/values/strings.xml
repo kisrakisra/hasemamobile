@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HAŞEMA</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="mailadress">Arkadaşınızın mail adresi</string>
+    <string name="marka_prompt">Marka seç</string>
+    <string name="mailstr1">Lütfen geçerli bir email adresi giriniz!</string>
+    <string name="mailstr2">Memnun Kaldığım Marka</string>
+    <string name="mailstr3"> markasından memnun kaldım. Sana da tavsiye ederim :)</string>
+    <string name="mailstr4">Sevgiler</string>
+    <string name="hasimage">hasimage</string>
+    <string name="title_activity_splash_screen">Hoşgeldiniz</string>
+    <string name="mainbanner">Ana Banner</string>
+    <string-array name="marka_arrays">
+        <item>Morhipo</item>
+        <item>N11</item>
+        <item>Sefamerve</item>
+        <item>Moda Nisa</item>
+        <item>Haşema</item>
+        <item>Terzhi</item>
+        <item>Ms Poem</item>
+    </string-array>
+</resources>
