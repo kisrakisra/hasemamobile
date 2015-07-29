@@ -13,6 +13,16 @@
     <string name="hasimage">hasimage</string>
     <string name="title_activity_splash_screen">Hoşgeldiniz</string>
     <string name="mainbanner">Ana Banner</string>
+    <string name="motto1">Haşema’nın orjinal markası zevk sahipleri için üretiyor..</string>
+    <string name="motto2">Hoşgeldiniz</string>
+    <string name="cattext1">Haşema</string>
+    <string name="cattext2">Haşema Sport</string>
+    <string name="cattext3">Nehar</string>
+    <string name="cattext4">Outlet</string>
+    <string name="catsubtext1">Tüm haşemalar</string>
+    <string name="catsubtext2">Spor giyim ürünleri</string>
+    <string name="catsubtext3">Nehar ürünleri</string>
+    <string name="catsubtext4">Outlet ürünleri</string>
     <string-array name="marka_arrays">
         <item>Morhipo</item>
         <item>N11</item>

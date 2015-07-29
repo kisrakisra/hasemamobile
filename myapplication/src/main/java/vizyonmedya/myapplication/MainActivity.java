@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 import android.net.Uri;
+import android.widget.ViewAnimator;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -75,8 +76,9 @@ public class MainActivity extends Activity {
     URUNSECENEKLER secenekler;
     ListView liste;
     LazyAdapter lazyadapter;
-    ImageButton facebook, twitter, instagram, youtube, pinterest;
+    ImageButton facebook, twitter, instagram, youtube, pinterest, cathas, catsport, catnehar, catoutlet;
     ImageView imageLogo;
+    ViewAnimator viewAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +91,16 @@ public class MainActivity extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        new parseMagic().execute();
+        viewAnimator = (ViewAnimator) findViewById(R.id.viewanimator1);
+
+        final Animation inAnim = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        final Animation outAnim = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+
+        viewAnimator.setInAnimation(inAnim);
+        viewAnimator.setOutAnimation(outAnim);
+
+        /*For first step removed the listview*/
+//        new parseMagic().execute();
     }
 
     @Override
@@ -163,17 +174,19 @@ public class MainActivity extends Activity {
                     liste.setAdapter(lazyadapter);
 
 
-
                 } catch (Exception exc) {
                 }
 
             }
 
         });
-        /**** Method for Setting the Height of the ListView dynamically.
-         **** Hack to fix the issue of not showing all the items of the ListView
-         **** when placed inside a ScrollView  ****/
-        public  void setListViewHeightBasedOnChildren(ListView listView) {
+
+        /**
+         * * Method for Setting the Height of the ListView dynamically.
+         * *** Hack to fix the issue of not showing all the items of the ListView
+         * *** when placed inside a ScrollView  ***
+         */
+        public void setListViewHeightBasedOnChildren(ListView listView) {
             ListAdapter listAdapter = listView.getAdapter();
             if (listAdapter == null)
                 return;
@@ -194,6 +207,7 @@ public class MainActivity extends Activity {
             listView.setLayoutParams(params);
             listView.requestLayout();
         }
+
         @Override
         protected void onPreExecute() {
             threads[0] = thread1;
@@ -214,14 +228,14 @@ public class MainActivity extends Activity {
                 threads[0].join();
                 threads[1].start();
                 threads[1].join();
-                setListViewHeightBasedOnChildren(liste);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         protected void onProgressUpdate(String... text) {
-
+            setListViewHeightBasedOnChildren(liste);
         }
     }
 
@@ -233,6 +247,28 @@ public class MainActivity extends Activity {
         imageLogo.clearAnimation();
         imageLogo.startAnimation(logoMoveAnimation);
     }
+
+    public void animateSmallerStart(ImageButton imageb) {
+        ImageButton animimage = imageb;
+        animClearAll();
+        Animation animMoveAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scalesmaller);
+        animMoveAnimation.setFillAfter(true);
+        animMoveAnimation.setFillEnabled(true);
+//        animimage.clearAnimation();
+        animimage.startAnimation(animMoveAnimation);
+    }
+
+    private void animClearAll() {
+        cathas = (ImageButton) findViewById(R.id.hasemabayan);
+        catsport = (ImageButton) findViewById(R.id.hasemasport);
+        catnehar = (ImageButton) findViewById(R.id.nehar);
+        catoutlet = (ImageButton) findViewById(R.id.outlet);
+        cathas.clearAnimation();
+        catsport.clearAnimation();
+        catnehar.clearAnimation();
+        catoutlet.clearAnimation();
+    }
+
 
     public void addListenerOnButton() {
         View.OnClickListener listener = new View.OnClickListener() {
@@ -261,11 +297,22 @@ public class MainActivity extends Activity {
                         _url = "https://www.pinterest.com/hasema/";
                         break;  // add here
 
+
                 }
                 if (_url != "") {
                     Uri uri = Uri.parse(_url);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
+                }
+
+
+                if (v.getId() == R.id.hasemabayan || v.getId() == R.id.hasemasport || v.getId() == R.id.nehar || v.getId() == R.id.outlet) {
+                    animateSmallerStart((ImageButton) findViewById(v.getId()));
+                    if (v.getId() == R.id.hasemabayan) {
+                        new parseMagic().execute();
+                        viewAnimator.showNext();
+                    }
+
                 }
             }
         };
@@ -279,6 +326,15 @@ public class MainActivity extends Activity {
         pinterest.setOnClickListener(listener);
         youtube = (ImageButton) findViewById(R.id.btnyoutube);
         youtube.setOnClickListener(listener);
+        cathas = (ImageButton) findViewById(R.id.hasemabayan);
+        cathas.setOnClickListener(listener);
+        catsport = (ImageButton) findViewById(R.id.hasemasport);
+        catsport.setOnClickListener(listener);
+        catnehar = (ImageButton) findViewById(R.id.nehar);
+        catnehar.setOnClickListener(listener);
+        catoutlet = (ImageButton) findViewById(R.id.outlet);
+        catoutlet.setOnClickListener(listener);
+
     }
 
 

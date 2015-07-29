@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".MainActivity"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffffffff"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/btnmenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="-5dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="@string/hasimage"
+            android:scaleType="centerCrop"
+            android:src="@drawable/menuicon" />
 
         <ImageButton
             android:id="@+id/btnpinterest"
@@ -99,66 +106,350 @@
             android:scaleType="centerCrop"
             android:src="@drawable/facebook" />
 
+        <View
+            android:id="@+id/border"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/btnfacebook"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:background="#bababa" />
+
         <!--<ImageView-->
         <!--android:layout_width="220dp"-->
         <!--android:layout_height="95dp"-->
         <!--android:src="@mipmap/logo" />-->
     </RelativeLayout>
-
+    <ViewAnimator
+        android:id="@+id/viewanimator1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_marginTop="60dp">
 
-        <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context=".MainActivity">
-
-
-            <View
-                android:id="@+id/border"
-                android:layout_width="300dp"
-                android:layout_height="1dp"
-                android:layout_below="@+id/header"
-                android:layout_centerHorizontal="true"
-                android:background="#bababa" />
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="0dp"
-                android:layout_marginTop="30dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/border"
                 android:contentDescription="@string/mainbanner"
                 android:longClickable="true"
-                android:paddingBottom="0dp"
+                android:paddingBottom="20dp"
                 android:paddingLeft="60dp"
                 android:paddingRight="60dp"
-                android:paddingTop="0dp"
+                android:paddingTop="20dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/circlebg" />
 
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/mottorlayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageView"
-                android:cacheColorHint="@android:color/transparent"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="10dp"
-                android:fadingEdge="none"
-                android:listSelector="@android:color/transparent"
-                android:padding="10dp"></ListView>
+                android:paddingBottom="20dp">
 
+                <TextView
+                    android:id="@+id/textmotto1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="@string/motto1"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textmotto2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textmotto1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="@string/motto2"
+                    android:textAlignment="center"
+                    android:textColor="#a5a5a5"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/dolphins"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textmotto2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="0dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/dolphins" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dolphins"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="0dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/banner1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/catsrlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mottorlayout"
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="40dp">
+
+                <ImageButton
+                    android:id="@+id/hasemabayan"
+                    android:layout_width="110dp"
+                    android:layout_height="105dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="@string/hasimage"
+                    android:padding="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/caticon_hasemabayan1" />
+
+                <RelativeLayout
+                    android:id="@+id/cattext1rlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_toRightOf="@+id/hasemabayan">
+
+                    <TextView
+                        android:id="@+id/cattext1a"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/cattext1"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cattext1b"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/cattext1a"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/catsubtext1"
+                        android:textAlignment="center"
+                        android:textColor="#a6a6a6"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <ImageButton
+                    android:id="@+id/hasemasport"
+                    android:layout_width="110dp"
+                    android:layout_height="105dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="false"
+                    android:layout_below="@+id/hasemabayan"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="@string/hasimage"
+                    android:padding="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/caticon_hasemasport1" />
+
+                <RelativeLayout
+                    android:id="@+id/cattext2rlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cattext1rlayout"
+                    android:layout_marginTop="80dp"
+                    android:layout_toRightOf="@+id/hasemasport">
+
+                    <TextView
+                        android:id="@+id/cattext2a"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/cattext2"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cattext2b"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/cattext2a"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/catsubtext2"
+                        android:textAlignment="center"
+                        android:textColor="#a6a6a6"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <ImageButton
+                    android:id="@+id/nehar"
+                    android:layout_width="110dp"
+                    android:layout_height="105dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/hasemasport"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="@string/hasimage"
+                    android:padding="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/caticon_nehar1" />
+
+                <RelativeLayout
+                    android:id="@+id/cattext3rlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cattext2rlayout"
+                    android:layout_marginTop="80dp"
+                    android:layout_toRightOf="@+id/nehar">
+
+                    <TextView
+                        android:id="@+id/cattext3a"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/cattext3"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cattext3b"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/cattext3a"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/catsubtext3"
+                        android:textAlignment="center"
+                        android:textColor="#a6a6a6"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <ImageButton
+                    android:id="@+id/outlet"
+                    android:layout_width="110dp"
+                    android:layout_height="105dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_below="@+id/nehar"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="@string/hasimage"
+                    android:padding="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/caticon_outlet1" />
+
+                <RelativeLayout
+                    android:id="@+id/cattext4rlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cattext3rlayout"
+                    android:layout_marginTop="80dp"
+                    android:layout_toRightOf="@+id/nehar">
+
+                    <TextView
+                        android:id="@+id/cattext4a"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/cattext4"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cattext4b"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/cattext4a"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/catsubtext4"
+                        android:textAlignment="center"
+                        android:textColor="#a6a6a6"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--<ListView-->
+                <!--android:id="@+id/listView1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/catsrlayout"-->
+                <!--android:cacheColorHint="@android:color/transparent"-->
+                <!--android:divider="@android:color/transparent"-->
+                <!--android:dividerHeight="10dp"-->
+                <!--android:fadingEdge="none"-->
+                <!--android:listSelector="@android:color/transparent"-->
+                <!--android:padding="10dp" />-->
 
         </RelativeLayout>
     </ScrollView>
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:paddingTop="60dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp" />
+</ViewAnimator>
 </RelativeLayout>
