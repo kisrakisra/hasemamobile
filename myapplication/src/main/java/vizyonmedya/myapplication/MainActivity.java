@@ -4,60 +4,32 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.Transformation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.content.Intent;
 import android.net.Uri;
-import android.widget.ViewAnimator;
+import android.widget.ViewSwitcher;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.File;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -78,7 +50,7 @@ public class MainActivity extends Activity {
     LazyAdapter lazyadapter;
     ImageButton facebook, twitter, instagram, youtube, pinterest, cathas, catsport, catnehar, catoutlet;
     ImageView imageLogo;
-    ViewAnimator viewAnimator;
+    ViewSwitcher viewSwitcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,17 +63,18 @@ public class MainActivity extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        viewAnimator = (ViewAnimator) findViewById(R.id.viewanimator1);
+        viewSwitcher = (ViewSwitcher) findViewById(R.id.viewSwitcher);
 
         final Animation inAnim = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
-        final Animation outAnim = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+        final Animation outAnim = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right );
 
-        viewAnimator.setInAnimation(inAnim);
-        viewAnimator.setOutAnimation(outAnim);
+        viewSwitcher.setInAnimation(inAnim);
+        viewSwitcher.setOutAnimation(outAnim);
 
         /*For first step removed the listview*/
 //        new parseMagic().execute();
     }
+
 
     @Override
     public void onDestroy() {
@@ -111,13 +84,10 @@ public class MainActivity extends Activity {
 
     class parseMagic extends AsyncTask<String, String, String> {
         String url = "http://www.hasema.com/UPLOAD/urun_expsecenek.xml";
-        String response = null;
-        ProgressDialog progress = null;
-        TextView xmlOutput;
         xmlHandler xmlr = new xmlHandler();
-        ArrayList<SECENEK> secList = new ArrayList<SECENEK>();
-        ArrayList<String> modelNames = new ArrayList<String>();
-        ArrayList<String> modelTexts = new ArrayList<String>();
+        ArrayList<SECENEK> secList = new ArrayList<>();
+        ArrayList<String> modelNames = new ArrayList<>();
+        ArrayList<String> modelTexts = new ArrayList<>();
         Thread[] threads = new Thread[2];
         Thread thread1 = new Thread(new Runnable() {
             @Override
@@ -134,8 +104,6 @@ public class MainActivity extends Activity {
 
                     SAXParserFactory spf = SAXParserFactory.newInstance();
                     SAXParser sp = spf.newSAXParser();
-                    XMLReader xr = sp.getXMLReader();
-                    InputStream stream = conn.getInputStream();
 
                     InputSource is = new InputSource(url);
                     is.setEncoding("UTF-8");
@@ -153,8 +121,8 @@ public class MainActivity extends Activity {
             public void run() {
                 try {
                     //progress.dismiss();
-                    modelNames = new ArrayList<String>();
-                    modelTexts = new ArrayList<String>();
+                    modelNames = new ArrayList<>();
+                    modelTexts = new ArrayList<>();
                     String oldurun = "";
                     for (int i = 0; i < secList.size(); i++) {
                         SECENEK sec = secList.get(i);
@@ -174,7 +142,7 @@ public class MainActivity extends Activity {
                     liste.setAdapter(lazyadapter);
 
 
-                } catch (Exception exc) {
+                } catch (Exception ignored) {
                 }
 
             }
@@ -249,13 +217,12 @@ public class MainActivity extends Activity {
     }
 
     public void animateSmallerStart(ImageButton imageb) {
-        ImageButton animimage = imageb;
         animClearAll();
         Animation animMoveAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scalesmaller);
         animMoveAnimation.setFillAfter(true);
         animMoveAnimation.setFillEnabled(true);
 //        animimage.clearAnimation();
-        animimage.startAnimation(animMoveAnimation);
+        imageb.startAnimation(animMoveAnimation);
     }
 
     private void animClearAll() {
@@ -274,7 +241,6 @@ public class MainActivity extends Activity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
                 String _url = "";
                 switch (v.getId()) {
                     case (R.id.btnfacebook):
@@ -310,7 +276,7 @@ public class MainActivity extends Activity {
                     animateSmallerStart((ImageButton) findViewById(v.getId()));
                     if (v.getId() == R.id.hasemabayan) {
                         new parseMagic().execute();
-                        viewAnimator.showNext();
+                        viewSwitcher.showNext();
                     }
 
                 }
